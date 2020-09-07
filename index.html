@@ -41,32 +41,26 @@
 		</section>
 	</div>
 	<div id="talent-div" class=tabcontent>
-		<button id="SCBtn" class="button" onClick="talentClick('SC')">Shadow Crash</button>
-		<button id="ASBtn" class="button" onCLick="talentClick('AS')">Auspicious Spirits</button>
 	</div>
 	<div id="sims-div" class=tabcontent>
-		<button id="TrinketsBtn" class="button" onClick="itemClick('Trinkets')">Trinkets</button>
-		<button id="TraitsBtn" class="button" onClick="itemClick('Traits')">Traits</button>
-		<button id="`sBtn" class="button" onClick="itemClick('Essences')">Essences</button>
-		<button id="CorruptionBtn" class="button" onClick="itemClick('Corruption')">Corruption</button>
-		<button id="TalentsBtn" class="button" onClick="itemClick('Talents')">Talents</button>
-		<button id="RacialsBtn" class="button" onClick="itemClick('Racials')">Racials</button>
-		<button id="EnchantsBtn" class="button" onClick="itemClick('Enchants')">Enchants</button>
-		<button id="ConsumablesBtn" class="button" onClick="itemClick('Consumables')">Consumables</button>
-		<!--
-		<button id="StatsBtn" class="button" onClick="itemClick('Stats')">Stats</button> -->
 	</div>
-	<div id="traits-div" class="dropdown-content">
-		<button id="Primary" class="button" onClick="itemClick('Traits-P')">Primary</button>
-		<button id="Secondary" class="button" onClick="itemClick('Traits-S')">Secondary</button>
+	<div id="conduits-div" class="dropdown-content">
+		<button id="kyrianbtn" class="button" onClick="itemClick('conduit-Kyrian')">Kyrian</button>
+		<button id="necrolordbtn" class="button" onClick="itemClick('conduit-Necrolord')">Necrolord</button>
+		<button id="nightfaebtn" class="button" onClick="itemClick('conduit-Night_Fae')">Night Fae</button>
+		<button id="venthyrbtn" class="button" onClick="itemClick('conduit-Venthyr')">Venthyr</button>
 	</div>
-	<div id="essence-div" class="dropdown-content">
-		<button id="Major" class="button" onClick="itemClick('Essence-Major')">Major</button>
-		<button id="Minor" class="button" onClick="itemClick('Essence-Minor')">Minor</button>
+	<div id="soulbinds-div" class="dropdown-content">
+		<button id="kyrianbtn" class="button" onClick="itemClick('soulbind-Kyrian')">Kyrian</button>
+		<button id="necrolordbtn" class="button" onClick="itemClick('soulbind-Necrolord')">Necrolord</button>
+		<button id="nightfaebtn" class="button" onClick="itemClick('soulbind-Night_Fae')">Night Fae</button>
+		<button id="venthyrbtn" class="button" onClick="itemClick('soulbind-Venthyr')">Venthyr</button>
 	</div>
-	<div id="corruption-div" class="dropdown-content">
-		<button id="DPSValues" class="button" onClick="itemClick('Corruption')">DPS Values</button>
-		<button id="DPSPerPoint" class="button" onClick="itemClick('Corruption-DPS')">DPS Per Corruption Point</button>
+	<div id="legendary-div" class="dropdown-content">
+		<button id="kyrianbtn" class="button" onClick="itemClick('legendaries-Kyrian')">Kyrian</button>
+		<button id="necrolordbtn" class="button" onClick="itemClick('legendaries-Necrolord')">Necrolord</button>
+		<button id="nightfaebtn" class="button" onClick="itemClick('legendaries-Night_Fae')">Night Fae</button>
+		<button id="venthyrbtn" class="button" onClick="itemClick('legendaries-Venthyr')">Venthyr</button>
 	</div>
 	<div id="enchant-div" class="dropdown-content">
 		<button id="Weapons" class="button" onClick="itemClick('Enchant-Weapon')">Weapon</button>
@@ -77,314 +71,18 @@
 		<button id="Food" class="button" onClick="itemClick('Consumable-Food')">Food</button>
 	</div>
 	<div id="Fight-Style-div" class=tabcontent>
-		<button id="CBtn" class="button" onClick="fightClick('C')">Composite</button>
-		<button id="STBtn" class="button" onClick="fightClick('ST')">Single Target</button>
-		<button id="DBtn" class="button" onClick="fightClick('D')">Dungeon</button>
 	</div>
 	<div id="empty"></div>
 	<div id="container"></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="./js/js-yaml/dist/js-yaml.min.js"></script>
+	<script src="./js/AcronymConverter.js" language="javascript"></script>
 	<script type="text/javascript" src="js/Chart_Building.js"></script>
 	<script>
-		var wcp_charts = new WCP_Chart('Chart-Display-div', {
-			charts: {
-				//Trinkets
-				'SCTrinketsC': {
-					type: 'trinket',
-					src: 'trinkets_SC_C',
-					title: 'Trinkets - Shadow Crash - Composite'
-				},
-				'SCTrinketsST': {
-					type: 'trinket',
-					src: 'trinkets_SC_ST',
-					title: 'Trinkets - Shadow Crash - Single Target'
-				},
-				'SCTrinketsD': {
-					type: 'trinket',
-					src: 'trinkets_SC_D',
-					title: 'Trinkets - Shadow Crash - Dungeon'
-				},
-				'ASTrinketsC': {
-					type: 'trinket',
-					src: 'trinkets_AS_C',
-					title: 'Trinkets - Auspicious Sprits - Composite'
-				},
-				'ASTrinketsST': {
-					type: 'trinket',
-					src: 'trinkets_AS_ST',
-					title: 'Trinkets - Auspicious Sprits - Single Target'
-				},
-				'ASTrinketsD': {
-					type: 'trinket',
-					src: 'trinkets_AS_D',
-					title: 'Trinkets - Auspicious Sprits - Dungeon'
-				},
-				//Traits
-				'SCTraitsC': {
-					type: 'trait',
-					src: 'traits_SC_C',
-					title: 'Azerite Traits - Shadow Crash - Composite'
-				},
-				'SCTraitsST': {
-					type: 'trait',
-					src: 'traits_SC_ST',
-					title: 'Azerite Traits - Shadow Crash - Single Target'
-				},
-				'SCTraitsD': {
-					type: 'trait',
-					src: 'traits_SC_D',
-					title: 'Azerite Traits - Shadow Crash - Dungeon'
-				},
-				'ASTraitsC': {
-					type: 'trait',
-					src: 'traits_AS_C',
-					title: 'Azerite Traits - Auspicious Sprits - Composite'
-				},
-				'ASTraitsST': {
-					type: 'trait',
-					src: 'traits_AS_ST',
-					title: 'Azerite Traits - Auspicious Sprits - Single Target'
-				},
-				'ASTraitsD': {
-					type: 'trait',
-					src: 'traits_AS_D',
-					title: 'Azerite Traits - Auspicious Sprits - Dungeon'
-				},
-				//Trait Combos
-				'SCTraitsCCombo': {
-					type: 'trait',
-					src: 'traits_SC_C_Combo',
-					title: 'Azerite Traits - Shadow Crash - Composite - Combos'
-				},
-				'SCTraitsSTCombo': {
-					type: 'trait',
-					src: 'traits_SC_ST_Combo',
-					title: 'Azerite Traits - Shadow Crash - Single Target - Combos'
-				},
-				'SCTraitsDCombo': {
-					type: 'trait',
-					src: 'traits_SC_D_Combo',
-					title: 'Azerite Traits - Shadow Crash - Dungeon - Combos'
-				},
-				'ASTraitsCCombo': {
-					type: 'trait',
-					src: 'traits_AS_C_Combo',
-					title: 'Azerite Traits - Auspicious Sprits - Composite - Combos'
-				},
-				'ASTraitsSTCombo': {
-					type: 'trait',
-					src: 'traits_AS_ST_Combo',
-					title: 'Azerite Traits - Auspicious Sprits - Single Target - Combos'
-				},
-				'ASTraitsDCombo': {
-					type: 'trait',
-					src: 'traits_AS_D_Combo',
-					title: 'Azerite Traits - Auspicious Sprits - Dungeon - Combos'
-				},
-				//Essences
-				'SCEssencesC': {
-					type: 'essence',
-					src: 'essences_SC_C',
-					title: 'Azerite essences - Shadow Crash - Composite'
-				},
-				'SCEssencesST': {
-					type: 'essence',
-					src: 'essences_SC_ST',
-					title: 'Azerite essences - Shadow Crash - Single Target'
-				},
-				'SCEssencesD': {
-					type: 'essence',
-					src: 'essences_SC_D',
-					title: 'Azerite essences - Shadow Crash - Dungeon'
-				},
-				'ASEssencesC': {
-					type: 'essence',
-					src: 'essences_AS_C',
-					title: 'Azerite essences - Auspicious Sprits - Composite'
-				},
-				'ASEssencesST': {
-					type: 'essence',
-					src: 'essences_AS_ST',
-					title: 'Azerite essences - Auspicious Sprits - Single Target'
-				},
-				'ASEssencesD': {
-					type: 'essence',
-					src: 'essences_AS_D',
-					title: 'Azerite essences - Auspicious Sprits - Dungeon'
-				},
-				//Corruption
-				'SCCorruptionC': {
-					type: 'corruption',
-					src: 'corruption_SC_C',
-					title: 'Corruption - Shadow Crash - Composite'
-				},
-				'SCCorruptionST': {
-					type: 'corruption',
-					src: 'corruption_SC_ST',
-					title: 'Corruption - Shadow Crash - Single Target'
-				},
-				'SCCorruptionD': {
-					type: 'corruption',
-					src: 'corruption_SC_D',
-					title: 'Corruption - Shadow Crash - Dungeon'
-				},
-				'ASCorruptionC': {
-					type: 'corruption',
-					src: 'corruption_AS_C',
-					title: 'Corruption - Auspicious Sprits - Composite'
-				},
-				'ASCorruptionST': {
-					type: 'corruption',
-					src: 'corruption_AS_ST',
-					title: 'Corruption - Auspicious Sprits - Single Target'
-				},
-				'ASCorruptionD': {
-					type: 'corruption',
-					src: 'corruption_AS_D',
-					title: 'Corruption - Auspicious Sprits - Dungeon'
-				},
-				//Corruption Point DPS
-				'SCCorruption-DPSC': {
-					type: 'corruption',
-					src: 'corruption_point_SC_C',
-					title: 'Corruption - Shadow Crash - Composite'
-				},
-				'SCCorruption-DPSST': {
-					type: 'corruption',
-					src: 'corruption_point_SC_ST',
-					title: 'Corruption - Shadow Crash - Single Target'
-				},
-				'SCCorruption-DPSD': {
-					type: 'corruption',
-					src: 'corruption_point_SC_D',
-					title: 'Corruption - Shadow Crash - Dungeon'
-				},
-				'ASCorruption-DPSC': {
-					type: 'corruption',
-					src: 'corruption_point_AS_C',
-					title: 'Corruption - Auspicious Sprits - Composite'
-				},
-				'ASCorruption-DPSST': {
-					type: 'corruption',
-					src: 'corruption_point_AS_ST',
-					title: 'Corruption - Auspicious Sprits - Single Target'
-				},
-				'ASCorruption-DPSD': {
-					type: 'corruption',
-					src: 'corruption_point_AS_D',
-					title: 'Corruption - Auspicious Sprits - Dungeon'
-				},
-				//Talents
-				'TalentsC' : {
-					type: 'talents',
-					src: 'talents_C',
-					title: 'Battle for Azeroth Talents - Composite'
-				},
-				'TalentsST' : {
-					type: 'talents',
-					src: 'talents_ST',
-					title: 'Battle for Azeroth Talents - Signle Target'
-				},
-				'TalentsD' : {
-					type: 'talents',
-					src: 'talents_D',
-					title: 'Battle for Azeroth Talents - Dungeon'
-				},
-				'ASRacialsC' : {
-					type: 'racials',
-					src: 'racials_AS_C',
-					title: 'Battle for Azeroth Racials - Composite'
-				},
-				'ASRacialsST' : {
-					type: 'racials',
-					src: 'racials_AS_ST',
-					title: 'Battle for Azeroth Racials - Single Target'
-				},
-				'ASRacialsD' : {
-					type: 'racials',
-					src: 'racials_AS_D',
-					title: 'Battle for Azeroth Racials - Dungeon'
-				},
-				'SCRacialsC' : {
-					type: 'racials',
-					src: 'racials_SC_C',
-					title: 'Battle for Azeroth Racials - Composite'
-				},
-				'SCRacialsST' : {
-					type: 'racials',
-					src: 'racials_SC_ST',
-					title: 'Battle for Azeroth Racials - Single Target'
-				},
-				'SCRacialsD' : {
-					type: 'racials',
-					src: 'racials_SC_D',
-					title: 'Battle for Azeroth Racials - Dungeon'
-				},
-				'ASEnchantsC' : {
-					type: 'enchants',
-					src: 'enchants_AS_C',
-					title: 'Battle for Azeroth Enchants - Composite'
-				},
-				'ASEnchantsST' : {
-					type: 'enchants',
-					src: 'enchants_AS_ST',
-					title: 'Battle for Azeroth Enchants - Single Target'
-				},
-				'ASEnchantsD' : {
-					type: 'enchants',
-					src: 'enchants_AS_D',
-					title: 'Battle for Azeroth Enchants - Dungeon'
-				},
-				'SCEnchantsC' : {
-					type: 'enchants',
-					src: 'enchants_SC_C',
-					title: 'Battle for Azeroth Enchants - Composite'
-				},
-				'SCEnchantsST' : {
-					type: 'enchants',
-					src: 'enchants_SC_ST',
-					title: 'Battle for Azeroth Enchants - Single Target'
-				},
-				'SCEnchantsD' : {
-					type: 'enchants',
-					src: 'enchants_SC_D',
-					title: 'Battle for Azeroth Enchants - Dungeon'
-				},
-				'ASConsumablesC' : {
-					type: 'consumables',
-					src: 'consumables_AS_C',
-					title: 'Battle for Azeroth Consumables - Composite'
-				},
-				'ASConsumablesST' : {
-					type: 'consumables',
-					src: 'consumables_AS_ST',
-					title: 'Battle for Azeroth Consumables - Single Target'
-				},
-				'ASConsumablesD' : {
-					type: 'consumables',
-					src: 'consumables_AS_D',
-					title: 'Battle for Azeroth Consumables - Dungeon'
-				},
-				'SCConsumablesC' : {
-					type: 'consumables',
-					src: 'consumables_SC_C',
-					title: 'Battle for Azeroth Consumables - Composite'
-				},
-				'SCConsumablesST' : {
-					type: 'consumables',
-					src: 'consumables_SC_ST',
-					title: 'Battle for Azeroth Consumables - Single Target'
-				},
-				'SCConsumablesD' : {
-					type: 'consumables',
-					src: 'consumables_SC_D',
-					title: 'Battle for Azeroth Consumables - Dungeon'
-				},
-			}
-		});
+		var wcp_charts = new WCP_Chart('Chart-Display-div');
+		console.log(wcp_charts);
 		wcp_charts.init();
-		wcp_charts.changeChart();
 	</script>
 	<div class="pad"><i> - All sim data is subject to a certain error percentage and should be taken with a grain of salt.</i></div>
 
